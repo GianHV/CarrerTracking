@@ -24,6 +24,10 @@ public class DateExt {
 	 * @exception ParseException: false if exception is happen
 	 */
 	public static boolean isValidDate(String date) {
+		
+		// if date is null or empty
+		if(StringExt.isNullOrEmpty(date)) return false;
+		
 		try {
 			// Create a SimpleDateFormat object with the specified DATE_FORMAT and disable lenient parsing.
             DateFormat df = new SimpleDateFormat(DATE_FORMAT);

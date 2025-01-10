@@ -21,7 +21,7 @@ public class GraduationDao{
 	private Connection connect;
 	
 	// CallableStatement for executing stored procedures
-	private CallableStatement ctm;
+	private CallableStatement ctm = null;
 	
 	// SQL query for calling the stored procedure
 	private String sql;
@@ -51,7 +51,7 @@ public class GraduationDao{
 		
 		try {
 			
-			CallableStatement ctm = connect.prepareCall(sql);
+			ctm = connect.prepareCall(sql);
 			
 			// Set the parameters for the stored procedure from the request object
 			ctm.setString(++param, request.getStudent().getSoCMND());

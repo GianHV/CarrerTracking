@@ -1,3 +1,4 @@
+<%@page import="common.Constants"%>
 <%@page import="dto.Section"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.School"%>
@@ -22,7 +23,7 @@ h2{
   flex-wrap: wrap;
   justify-content: space-between;
   width: 80%;
-  margin: 0 auto;
+  margin: 15px auto;
 }
 
 .form-group {
@@ -55,40 +56,50 @@ button[type="submit"] {
   cursor: pointer;
   width: 100%;
 }
+
+.error-message{
+	color: red;
+	height: 10px;
+	text-align: center;
+}
    
   </style>
 </head>
 <body>
 	<h2>Form Thêm Sinh Viên</h2>
-<form action="/submit" method="POST" class="form-container">
+	<div class="error-message"><%= request.getAttribute("error-message") == null || 
+									request.getAttribute("error-message") == Constants.EMPTY_STRING ?
+									Constants.EMPTY_STRING :
+									request.getAttribute("error-message") %></div>
+<form method="POST" class="form-container">
   <div class="form-group">
     <label for="soCMND">Số CMND</label>
-    <input type="text" id="soCMND" name="soCMND" required>
+    <input type="text" id="soCMND" name="soCMND">
   </div>
 
   <div class="form-group">
     <label for="hoTen">Họ Tên</label>
-    <input type="text" id="hoTen" name="hoTen" required>
+    <input type="text" id="hoTen" name="hoTen">
   </div>
 
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email">
   </div>
 
   <div class="form-group">
     <label for="soDT">Số Điện Thoại</label>
-    <input type="text" id="soDT" name="soDT" required>
+    <input type="text" id="soDT" name="soDT">
   </div>
 
   <div class="form-group">
     <label for="diaChi">Địa Chỉ</label>
-    <input type="text" id="diaChi" name="diaChi" required>
+    <input type="text" id="diaChi" name="diaChi">
   </div>
 
   <div class="form-group">
     <label for="maTruong">Mã Trường</label>
-    <select id="maTruong" name="maTruong" required>
+    <select id="maTruong" name="maTruong">
       <%
       	ArrayList<School> schools = (ArrayList<School>) request.getAttribute("schools");
     	for(School school : schools) { %>
@@ -101,7 +112,7 @@ button[type="submit"] {
 
   <div class="form-group">
     <label for="maNganh">Mã Ngành</label>
-    <select id="maNganh" name="maNganh" required>
+    <select id="maNganh" name="maNganh">
       <%
       	ArrayList<Section> sections = (ArrayList<Section>) request.getAttribute("sections");
     	for(Section section : sections) { %>
@@ -114,17 +125,17 @@ button[type="submit"] {
 
   <div class="form-group">
     <label for="heTN">Hệ Tốt Nghiệp</label>
-    <input type="text" id="heTN" name="heTN" required>
+    <input type="text" id="heTN" name="heTN">
   </div>
 
   <div class="form-group">
     <label for="ngayTN">Ngày Tốt Nghiệp</label>
-    <input type="date" id="ngayTN" name="ngayTN" required>
+    <input type="date" id="ngayTN" name="ngayTN">
   </div>
 
   <div class="form-group">
     <label for="loaiTN">Loại Tốt Nghiệp</label>
-    <input type="text" id="loaiTN" name="loaiTN" required>
+    <input type="text" id="loaiTN" name="loaiTN">
   </div>
 
   <button type="submit">Thêm Sinh Viên</button>
